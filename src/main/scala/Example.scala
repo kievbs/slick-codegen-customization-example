@@ -1,27 +1,27 @@
-import demo.Config
-import demo.Tables
-import Tables._
-import Tables.profile.api._
+//import demo.Config
+//import demo.Tables
+//import Tables._
+//import Tables.profile.api._
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object Example extends App {
-  val db = Database.forURL(Config.url, driver=Config.jdbcDriver)
-
-  // Using generated code. Our Build.sbt makes sure they are generated before compilation.
-  // TableQuery names are lower case just as we customized them.
-  val q = suppliers.join(coffees).on(_.id === _.supplierId)
-                   .map{ case (s,c) => (s.name, c.name) }
-
-  Await.ready(
-    db.run {
-      q.result.map(
-        _.groupBy{ case (s,c) => s }
-         .mapValues(_.map{ case (s,c) => c })
-         .mkString("\n")
-      ).map(println)
-    },
-    20.seconds
-  )
+//  val db = Database.forURL(Config.url, driver=Config.jdbcDriver)
+//
+//  // Using generated code. Our Build.sbt makes sure they are generated before compilation.
+//  // TableQuery names are lower case just as we customized them.
+//  val q = suppliers.join(coffees).on(_.id === _.supplierId)
+//                   .map{ case (s,c) => (s.name, c.name) }
+//
+//  Await.ready(
+//    db.run {
+//      q.result.map(
+//        _.groupBy{ case (s,c) => s }
+//         .mapValues(_.map{ case (s,c) => c })
+//         .mkString("\n")
+//      ).map(println)
+//    },
+//    20.seconds
+//  )
 }
